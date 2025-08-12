@@ -1,6 +1,3 @@
-[submodule "v4/zmap_v4_modules"]
-	path = v4/zmap_v4_modules
-	url = https://github.com/snourin/zmap_v4_modules.git
 [submodule "v6/zmap_v6_modules"]
 	path = v6/zmap_v6_modules
 	url = https://github.com/snourin/zmap_v6_modules.git
