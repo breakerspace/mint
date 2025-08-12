@@ -112,7 +112,7 @@ def global_censored_zmap_scan(port, interface, source_ip, storage_dst, protocol_
         time.sleep(1)
         os.system("mv src/probe_modules/.backup src/probe_modules/module_ipv6_forbidden_scan.c")
         time.sleep(1)
-        os.system(f"cmake . && make -j4 && sudo src/zmap -M ipv6_forbidden_scan -p {port} -I {allowlist_file_path} -f \"saddr,len,payloadlen,flags,validation_type,sport,dport,seqnum,acknum,window,ipid,ttl\" -o ../{protocol_pkt_seq}/{host}.csv -O csv -B 10M -i {interface} -c 60 -s {curr_sport}-{sport_range_end}")
+        os.system(f"cmake . && make -j4 && sudo src/zmap -M ipv6_forbidden_scan -p {port} --ipv6-source-ip {source_ip} --ipv6-target-file {v6_target_file} -f \"saddr,len,payloadlen,flags,validation_type,sport,dport,seqnum,acknum,window,ttl\" -o ../{protocol_pkt_seq}/{host}.csv -O csv -B 10M -i {interface} -c 60 -s {curr_sport}-{sport_range_end}")
         
         # Kill tcpdump session
         check_output('tmux send-keys -t tcpdump_scan "C-c"', shell=True)
@@ -126,7 +126,7 @@ def global_censored_zmap_scan(port, interface, source_ip, storage_dst, protocol_
         os.system(f"sudo pigz --best ../{protocol_pkt_seq}/{host}.pcap")
 
         # Ensure zmap module is restored to the original version without the modified host name
-        os.system("git checkout -- src/probe_modules/module_forbidden_scan.c")
+        os.system("git checkout -- src/probe_modules/module_ipv6_forbidden_scan.c")
 
         curr_sport += sport_range
         
