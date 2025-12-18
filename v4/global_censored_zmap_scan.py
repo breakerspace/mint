@@ -117,7 +117,7 @@ def global_censored_zmap_scan(port, interface, source_ip, storage_dst, protocol_
     
     # Gets nonresponsive IPs
     log_file.write("Getting nonresponsive IP addresses\n")
-    #get_non_responsive_ips(port, interface, protocol_pkt_seq, log_file)
+    get_non_responsive_ips(port, interface, protocol_pkt_seq, log_file)
     
     # Transfer all IP address files to storage machine
     ip_address_files = ["ip_addresses.txt", "live_ips.txt", "nonresponsive_ips.txt"]
