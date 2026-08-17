@@ -32,10 +32,10 @@ bash run_zmap_scan.sh 80 eth0 1.2.3.4 user@host:/home/user/mint_scans/ http_syn_
 The current scanning rate for Mint is set at 10 MB/s, but this can be increased or decreased depending on limits of the scanning machine.
 
 ## IPv6
-IPv6 uses the same arguments as IPv4 with the addition of one argument:
-* `v6_target_file`: The file that lists the IPv6 addresses to scan. These IPv6 addresses should be nonresponsive.
+IPv6 uses the same arguments as IPv4, in addition to two arguments:
 
-In order to obtain IPv6 addresses for this file, feel free to obtain allocated /48 prefixes from [The IPv6 Observatory](https://ipv6observatory.org/) and enumerate random IPv6 addresses within these /48 prefixes.
+* `ipv6_slash_48_file_path`: The file that lists allocated /48 prefixes, according to [The IPv6 Observatory](https://ipv6observatory.org/).
+* `path_to_regular_zmap`: The path of [zmap over IPv6](https://github.com/tumi8/zmap).
 
 ## Notes
 Depending on your scanning machine you may see the following message appear when running our scripts:
